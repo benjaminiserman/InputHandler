@@ -51,11 +51,13 @@ public static partial class Input
         getString ??= Console.ReadLine;
         write ??= Console.WriteLine;
 
+        StringComparer comparer = caseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
+
         while (true)
         {
             string s = getString();
-            if (yesOptions.Contains(s)) return true;
-            else if (noOptions.Contains(s)) return false;
+            if (yesOptions.Contains(s, comparer)) return true;
+            else if (noOptions.Contains(s, comparer)) return false;
             else write(message);
         }
     }
