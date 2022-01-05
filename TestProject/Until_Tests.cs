@@ -1,8 +1,7 @@
 ﻿namespace TestProject;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using InputHandler;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [TestClass]
 public class Until_Tests

@@ -1,9 +1,7 @@
 ﻿namespace InputHandler;
 using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
-using System.ComponentModel;
+using System.Text;
 
 /// <summary>
 /// Contains a number of methods for handling user input.
