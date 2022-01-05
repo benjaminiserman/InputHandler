@@ -15,8 +15,7 @@ How to decide which method to use:
 >Want the user to input *specifically* y/n? => GetYNStrict
 
 >Want the user to choose from a collection of options? => GetOption
->(includes generic overload if you want to convert it off of string after, and one if you want them to choose from string keys in a Dictionary)
-
+>(includes generic overload if you want to convert it off of string after, and one if you want them to choose from string keys in a Dictionary, and another if you want to choose from names in an Enum)
 
 
 **Want the user to enter one input...**

@@ -150,7 +150,7 @@ public static partial class Input
     /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
     /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
     /// <param name="message">The error message sent if a string not contained in <paramref name="options"/> is inputted. (optional)</param>
-    /// <returns>The first string entered contained within <paramref name="options"/></returns>
+    /// <returns>The value of the first string entered that can be used as a key in <paramref name="options"/></returns>
     public static T GetOption<T>(Dictionary<string, T> options, StringComparison comparison = StringComparison.Ordinal, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
     {
         getString ??= Console.ReadLine;
@@ -164,6 +164,31 @@ public static partial class Input
             if (options.Keys.Contains(s, comparer))
             {
                 return options[options.Keys.First(x => comparer.Compare(s, x) == 0)];
+            }
+            else write(message);
+        }
+    }
+
+    /// <summary>
+    /// Prompts for input until it receives a valid name from enum <typeparamref name="T"/>, then returns the corresponding value from <typeparamref name="T"/>. Can optionally use parameter <paramref name="message"/> to specify an error message.
+    /// </summary>
+    /// <param name="ignoreCase">Whether or not to ignore case. Defaults to true. (optional)</param>
+    /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
+    /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
+    /// <param name="message">The error message sent if a string not contained in <typeparamref name="T"/> is inputted. (optional)</param>
+    /// <returns>The first valid <typeparamref name="T"/> entered.</returns>
+    public static T GetOption<T>(bool ignoreCase = true, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
+        where T : Enum
+    {
+        getString ??= Console.ReadLine;
+        write ??= Console.WriteLine;
+
+        while (true)
+        {
+            string s = getString();
+            if (Enum.TryParse(typeof(T), s, ignoreCase, out var result))
+            {
+                return (T)result;
             }
             else write(message);
         }

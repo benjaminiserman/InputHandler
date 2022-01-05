@@ -226,4 +226,35 @@ public class Choice_Tests
 
 		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 4);
 	}
+
+	enum Color
+	{
+		Red, Orange, Yellow, Green, Blue, Purple
+	}
+
+	[DataTestMethod]
+	[DataRow(0)]
+	[DataRow(1)]
+	[DataRow(2)]
+	[DataRow(5)]
+	[DataRow(10)]
+	[DataRow(100)]
+	public void GetOptionEnum(int n)
+	{
+		Queue<string> queue = new();
+		for (int i = 0; i < n; i++) queue.Enqueue("hi");
+		queue.Enqueue("red");
+
+		Assert.AreEqual(Input.GetOption<Color>(getString: () => queue.Dequeue()), Color.Red, "red");
+
+		for (int i = 0; i < n; i++) queue.Enqueue("hola");
+		queue.Enqueue("puRpLE");
+
+		Assert.AreEqual(Input.GetOption<Color>(getString: () => queue.Dequeue()), Color.Purple, "purple");
+
+		for (int i = 0; i < n; i++) queue.Enqueue("h");
+		queue.Enqueue("Yellow");
+
+		Assert.AreEqual(Input.GetOption<Color>(getString: () => queue.Dequeue()), Color.Yellow, "yellow");
+	}
 }
