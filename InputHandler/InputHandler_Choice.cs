@@ -46,7 +46,7 @@ public static partial class Input
     /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
     /// <param name="message">The error message sent if a string contained in neither <paramref name="yesOptions"/> nor <paramref name="noOptions"/> is inputted. (optional)</param>
     /// <returns>Once a valid input is entered: <see langword="true"/> if <paramref name="yesOptions"/> contains input, <see langword="false"/> if <paramref name="noOptions"/> contains input. In the case that both <paramref name="yesOptions"/> and <paramref name="noOptions"/> contain input, returns <see langword="true"/>.</returns>
-    public static bool GetYN(IEnumerable<string> yesOptions, IEnumerable<string> noOptions, bool caseSensitive = true, Func<string> getString = null, Action<string> write = null, string message = "Specified input is not a valid yes or no option. Please try a different input.")
+    public static bool GetYN(IEnumerable<string> yesOptions, IEnumerable<string> noOptions, bool caseSensitive = false, Func<string> getString = null, Action<string> write = null, string message = "Specified input is not a valid yes or no option. Please try a different input.")
     {
         getString ??= Console.ReadLine;
         write ??= Console.WriteLine;
