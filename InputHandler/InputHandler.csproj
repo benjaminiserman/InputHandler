@@ -4,6 +4,19 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Authors>winggar</Authors>
+	<Description>A small library for handling user input in console apps.</Description>
+	<Copyright>Benjamin E. Iserman</Copyright>
+	<RepositoryUrl>https://github.com/winggar/InputHandler</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/winggar/InputHandler</PackageProjectUrl>
+	<PackageReleaseNotes>
+	  v.1.2.1:
+	  - added generic ListUntil and ListUntilEmpty
+	</PackageReleaseNotes>
+	<NeutralLanguage>en-US</NeutralLanguage>
+	<PackageTags>input input-validation input-handler</PackageTags>
+	<Version>1.2.1</Version>
   </PropertyGroup>
 
 </Project>
