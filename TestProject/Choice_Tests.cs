@@ -138,13 +138,13 @@ public class Choice_Tests
 		for (int i = 0; i < n; i++) queue.Enqueue("h");
 		queue.Enqueue("Yellow");
 
-		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue(), caseSensitive: false), "yellow");
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), "yellow");
 
 		queue = new();
 		for (int i = 0; i < n; i++) queue.Enqueue("Blue");
 		queue.Enqueue("blue");
 
-		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue(), caseSensitive: false), "blue");
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), "blue");
 	}
 
 	[DataTestMethod]
@@ -174,13 +174,13 @@ public class Choice_Tests
 		for (int i = 0; i < n; i++) queue.Enqueue("h");
 		queue.Enqueue("Yellow");
 
-		Assert.AreEqual(Input.GetOption(choices, s => choices.IndexOf(s), getString: () => queue.Dequeue(), caseSensitive: false), 2);
+		Assert.AreEqual(Input.GetOption(choices, s => choices.IndexOf(s), StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 2);
 
 		queue = new();
 		for (int i = 0; i < n; i++) queue.Enqueue("Blue");
 		queue.Enqueue("blue");
 
-		Assert.AreEqual(Input.GetOption(choices, s => choices.IndexOf(s), getString: () => queue.Dequeue(), caseSensitive: false), 4);
+		Assert.AreEqual(Input.GetOption(choices, s => choices.IndexOf(s), StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 4);
 	}
 
 	[DataTestMethod]
@@ -218,12 +218,12 @@ public class Choice_Tests
 		for (int i = 0; i < n; i++) queue.Enqueue("h");
 		queue.Enqueue("Yellow");
 
-		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue(), caseSensitive: false), 2);
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 2);
 
 		queue = new();
 		for (int i = 0; i < n; i++) queue.Enqueue("Blue");
 		queue.Enqueue("blue");
 
-		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue(), caseSensitive: false), 4);
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 4);
 	}
 }
