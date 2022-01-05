@@ -170,6 +170,34 @@ public static partial class Input
     }
 
     /// <summary>
+    /// Prompts for input until it receives a string contained as a possible option within a ICollection<string> key in <paramref name="options"/>, then returns the corresponding value within <paramref name="options"/>. Can optionally use parameter <paramref name="message"/> to specify an error message.
+    /// </summary>
+    /// <param name="options">The dictionary of valid options.</param>
+    /// <param name="comparison">The string comparison to be used. Defaults to Ordinal. (optional)</param>
+    /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
+    /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
+    /// <param name="message">The error message sent if a string not contained in <paramref name="options"/> is inputted. (optional)</param>
+    /// <returns>The value of the first string entered that can be used as a key in <paramref name="options"/></returns>
+    public static T GetOption<T, T2>(Dictionary<T2, T> options, StringComparison comparison = StringComparison.Ordinal, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
+        where T2 : ICollection<string>
+    {
+        getString ??= Console.ReadLine;
+        write ??= Console.WriteLine;
+
+        StringComparer comparer = StringComparer.FromComparison(comparison);
+
+        while (true)
+        {
+            string s = getString();
+            if (options.Keys.Any(x => x.Contains(s, comparer)))
+            {
+                return options[options.Keys.First(x => x.Contains(s, comparer))];
+            }
+            else write(message);
+        }
+    }
+
+    /// <summary>
     /// Prompts for input until it receives a valid name from enum <typeparamref name="T"/>, then returns the corresponding value from <typeparamref name="T"/>. Can optionally use parameter <paramref name="message"/> to specify an error message.
     /// </summary>
     /// <param name="ignoreCase">Whether or not to ignore case. Defaults to true. (optional)</param>

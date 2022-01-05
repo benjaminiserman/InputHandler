@@ -227,6 +227,50 @@ public class Choice_Tests
 		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 4);
 	}
 
+	[DataTestMethod]
+	[DataRow(0)]
+	[DataRow(1)]
+	[DataRow(2)]
+	[DataRow(5)]
+	[DataRow(10)]
+	[DataRow(100)]
+	public void GetOptionListDictionary(int n)
+	{
+		Dictionary<List<string>, int> choices = new()
+		{
+			[new() { "red" }] = 0,
+			[new() { "orange" }] = 1,
+			[new() { "yellow" }] = 2,
+			[new() { "green" }] = 3,
+			[new() { "blue" }] = 4,
+			[new() { "purple", "indigo", "violet" }] = 5
+		};
+
+		Queue<string> queue = new();
+		for (int i = 0; i < n; i++) queue.Enqueue("hi");
+		queue.Enqueue("red");
+
+		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue()), 0);
+
+		queue = new();
+		for (int i = 0; i < n; i++) queue.Enqueue("Purple");
+		queue.Enqueue("purple");
+
+		Assert.AreEqual(Input.GetOption(choices, getString: () => queue.Dequeue()), 5);
+
+		queue = new();
+		for (int i = 0; i < n; i++) queue.Enqueue("h");
+		queue.Enqueue("Indigo");
+
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 5);
+
+		queue = new();
+		for (int i = 0; i < n; i++) queue.Enqueue("Blue");
+		queue.Enqueue("blue");
+
+		Assert.AreEqual(Input.GetOption(choices, StringComparison.OrdinalIgnoreCase, getString: () => queue.Dequeue()), 4);
+	}
+
 	enum Color
 	{
 		Red, Orange, Yellow, Green, Blue, Purple

@@ -117,6 +117,43 @@ public static partial class Input
     }
 
     /// <summary>
+    /// Prompts for input and converts it using <paramref name="convert"/> until <paramref name="check"/> returns true and <paramref name="convert"/> does not throw an exception. Can optionally use parameter <paramref name="getMessage"/> to specify an error message.
+    /// </summary>
+    /// <param name="convert">The function that converts the input from <paramref name="getString"/> into type <typeparamref name="T"/>.</param>
+    /// <param name="check">The predicate used to check input from <paramref name="getString"/>.</param>
+    /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
+    /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
+    /// <param name="getMessage">The message sent if <paramref name="check"/> returns <see langword="false"/>. (optional)</param>
+    /// <returns>The first input for which <paramref name="check"/> returns <see langword="true"/>.</returns>
+    public static T GetCheck<T>(Func<string, T> convert, Predicate<string> check, Func<string> getString = null, Action<string> write = null, Func<string, Exception, string> getMessage = null)
+    {
+        getString ??= Console.ReadLine;
+        write ??= Console.WriteLine;
+
+        T x;
+        while (true)
+        {
+            string s = getString();
+            if (check(s))
+            {
+                try
+                {
+                    x = convert(s);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    write(getMessage?.Invoke(s, e) ?? "Invalid format... Please try again.");
+                    continue;
+                }
+            }
+            else write($"Input {s} does not pass check {check}");
+        }
+
+        return x;
+    }
+
+    /// <summary>
     /// Prompts for input using  until <paramref name="convert"/> does not throw an exception. Can optionally use parameter <paramref name="getMessage"/> to specify an error message.
     /// </summary>
     /// <param name="convert">The predicate used to convert input from <paramref name="getString"/> into a bool.</param>
