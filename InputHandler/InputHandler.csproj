@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,17 +6,39 @@
     <Nullable>disable</Nullable>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<Authors>winggar</Authors>
-	<Description>A small library for handling user input in console apps.</Description>
+	<Description>a small library for text input handling and valdiation.
+https://github.com/winggar/InputHandler</Description>
 	<Copyright>Benjamin E. Iserman</Copyright>
 	<RepositoryUrl>https://github.com/winggar/InputHandler</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/winggar/InputHandler</PackageProjectUrl>
-	<PackageReleaseNotes>
-	  v.1.2.1:
-	  - added generic ListUntil and ListUntilEmpty
-	</PackageReleaseNotes>
+	<PackageReleaseNotes>v2.0.0.0: overhauled everything</PackageReleaseNotes>
 	<NeutralLanguage>en-US</NeutralLanguage>
 	<PackageTags>input input-validation input-handler</PackageTags>
-	<Version>1.2.1</Version>
+	<Version>2.0.0</Version>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<ApplicationIcon>inputhandler.ico</ApplicationIcon>
+	<PackageIcon>inputhandler.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="inputhandler.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\inputhandler.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+	<None Include="..\LICENSE.md">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+  </ItemGroup>
 
 </Project>
