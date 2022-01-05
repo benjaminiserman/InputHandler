@@ -3,7 +3,7 @@ A small library for handling user input in console apps
 
 All methods are contained in a static class Input within the InputHandler namespace, and include XML documentation.
 
-TestProject contains unit tests for every method.
+The UnitTests project contains unit tests for every method.
 <br><br><br><br><br>
 How to decide which method to use:
 
