@@ -93,16 +93,22 @@ public static partial class Input
     /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
     /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
     /// <param name="message">The error message sent if a string not contained in <paramref name="options"/> is inputted. (optional)</param>
+    /// <param name="caseSensitive">Whether or not the comparison should be case sensitive.</param>
     /// <returns>The first string entered contained within <paramref name="options"/></returns>
-    public static string GetOption(IEnumerable<string> options, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
+    public static string GetOption(IEnumerable<string> options, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.", bool caseSensitive = true)
     {
         getString ??= Console.ReadLine;
         write ??= Console.WriteLine;
 
+        StringComparer comparer = caseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
+
         while (true)
         {
             string s = getString();
-            if (options.Contains(s)) return s;
+            if (options.Contains(s, comparer))
+			{
+                return options.First(x => comparer.Compare(s, x) == 0);
+			}
             else write(message);
         }
     }
@@ -114,16 +120,22 @@ public static partial class Input
     /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
     /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
     /// <param name="message">The error message sent if a string not contained in <paramref name="options"/> is inputted. (optional)</param>
+    /// <param name="caseSensitive">Whether or not the comparison should be case sensitive.</param>
     /// <returns>The first string entered contained within <paramref name="options"/></returns>
-    public static T GetOption<T>(IEnumerable<string> options, Func<string, T> convert, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
+    public static T GetOption<T>(IEnumerable<string> options, Func<string, T> convert, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.", bool caseSensitive = true)
     {
         getString ??= Console.ReadLine;
         write ??= Console.WriteLine;
 
+        StringComparer comparer = caseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
+
         while (true)
         {
             string s = getString();
-            if (options.Contains(s)) return convert(s);
+            if (options.Contains(s, comparer))
+            {
+                return convert(options.First(x => comparer.Compare(s, x) == 0));
+            }
             else write(message);
         }
     }
@@ -135,16 +147,22 @@ public static partial class Input
     /// <param name="getString">The function used to get user input. Defaults to Console.ReadLine. (optional)</param>
     /// <param name="write">The function used to output errors. Defaults to Console.WriteLine. (optional)</param>
     /// <param name="message">The error message sent if a string not contained in <paramref name="options"/> is inputted. (optional)</param>
+    /// <param name="caseSensitive">Whether or not the comparison should be case sensitive.</param>
     /// <returns>The first string entered contained within <paramref name="options"/></returns>
-    public static T GetOption<T>(Dictionary<string, T> options, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.")
+    public static T GetOption<T>(Dictionary<string, T> options, Func<string> getString = null, Action<string> write = null, string message = "Value inputted is not a valid option.", bool caseSensitive = true)
     {
         getString ??= Console.ReadLine;
         write ??= Console.WriteLine;
 
+        StringComparer comparer = caseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase;
+
         while (true)
         {
             string s = getString();
-            if (options.ContainsKey(s)) return options[s];
+            if (options.Keys.Contains(s, comparer))
+            {
+                return options[options.Keys.First(x => comparer.Compare(s, x) == 0)];
+            }
             else write(message);
         }
     }
