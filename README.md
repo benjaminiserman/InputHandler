@@ -1,4 +1,8 @@
 # InputHandler
+![NuGet Version](https://img.shields.io/nuget/v/InputHandler?style=for-the-badge)
+![NuGet Downloads](https://img.shields.io/nuget/dt/InputHandler?style=for-the-badge)
+
+
 A small library for handling user input in console apps
 
 All methods are contained in a static class Input within the InputHandler namespace, and include XML documentation.
