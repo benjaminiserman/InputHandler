@@ -1,6 +1,7 @@
 # InputHandler
 ![NuGet Version](https://img.shields.io/nuget/v/InputHandler?style=for-the-badge)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/InputHandler?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/winggar/InputHandler?style=for-the-badge)
 
 
 A small library for handling user input in console apps
