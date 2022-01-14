@@ -3,15 +3,30 @@
 ![NuGet Downloads](https://img.shields.io/nuget/dt/InputHandler?style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/winggar/InputHandler?style=for-the-badge)
 
-
-
 A small library for handling user input in console apps
 
 All methods are contained in a static class Input within the InputHandler namespace, and include XML documentation.
 
 The UnitTests project contains unit tests for every method.
-<br><br><br><br><br>
-How to decide which method to use:
+
+## Installation
+
+InputHandler is available at NuGet at https://www.nuget.org/packages/InputHandler/.
+
+In order to compile InputHandler, you require the following:
+
+### Using Visual Studio
+
+- [Visual Studio 2017](https://www.microsoft.com/net/core#windowsvs2017)
+- [.NET Core SDK](https://www.microsoft.com/net/download/core)
+
+The .NET Core workload must be selected during Visual Studio installation.
+
+### Using Command Line
+
+- [.NET Core SDK](https://www.microsoft.com/net/download/core)
+
+## Which Method Should I Use?
 
 **Want the user to pick from a set of options?**
 
@@ -53,3 +68,7 @@ How to decide which method to use:
 >a null or empty line? ListUntilEmpty, YieldUntilEmpty
 
 >a line that passes a specified check? ListUntil, YieldUntil
+
+## License
+
+![License](https://img.shields.io/github/license/winggar/InputHandler?style=for-the-badge)
