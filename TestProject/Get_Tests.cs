@@ -73,7 +73,7 @@ public class Get_Tests
 	{
 		double x;
 		Queue<string> queue = new();
-		
+
 		for (int i = 0; i < n; i++) queue.Enqueue("hi");
 		queue.Enqueue("7.5");
 
